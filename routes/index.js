@@ -18,4 +18,13 @@ router.get('/users', async (req, res, next) => {
   }
 });
 
+router.get('/name-your-duck', (req, res) => {
+  res.render('main/name-your-duck');
+});
+
+router.post('/submit-duck-name', (req, res) => {
+  const duckName = req.body.duckName;
+  res.send(`Your duck is named: ${duckName}`);
+});
+
 export default router;

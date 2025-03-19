@@ -10,6 +10,7 @@ import indexRouter from '../routes/index';
 import livereload from 'connect-livereload';
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 
 /**
  * Sets up common middleware for handling cookies, body parsing, etc.

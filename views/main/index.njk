@@ -2,4 +2,12 @@
 
 {% block content %}
     <h1 class="govuk-heading-xl">{{config.SERVICE_NAME}}</h1>
+    <h2 class="govuk-body-l">A service to register your rubber duck</h2>
+
+    {% from "govuk/components/button/macro.njk" import govukButton %}
+
+        {{ govukButton({
+        text: "Start",
+        href: "/name-your-duck"
+        }) }}
 {% endblock %}
