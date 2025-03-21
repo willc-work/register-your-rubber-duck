@@ -1,13 +1,34 @@
 {% extends "base.njk" %}
 
 {% block content %}
-    <h1 class="govuk-heading-xl">{{config.SERVICE_NAME}}</h1>
+    <h1 class="govuk-heading-xl">{{config.SERVICE_NAME}} 🐤</h1>
     <h2 class="govuk-body-l">A service to register your rubber duck</h2>
 
-    {% from "govuk/components/button/macro.njk" import govukButton %}
+    <blockquote class="govuk-body govuk-!-font-size-19 govuk-!-margin-bottom-4" style="font-style: italic;">
+        “Be like a duck. Calm on the surface, but always paddling like the dickens underneath.” – Michael Caine
+    </blockquote>
 
-        {{ govukButton({
+    <p class="govuk-body">
+        This service is for individuals, institutions, and international bodies who wish to officially register their rubber ducks with the Global Rubber Duck Authority (GRDA).
+    </p>
+
+    <p class="govuk-body">
+        Before you begin, make sure you meet the following criteria:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+        <li>You must own a rubber duck</li>
+        <li>Your rubber duck must have a name</li>
+        <li>Your rubber duck must not already be registered</li>
+    </ul>
+
+    <p class="govuk-body">
+        Once registered, your duck will be issued a unique registration ID and entered into the International Rubber Duck Registry (IRDR). This will allow your Rubber Duck to acompany you on international journeys and will exempt them from local quarantine laws related to waterfowl.
+    </p>
+
+    {% from "govuk/components/button/macro.njk" import govukButton %}
+    {{ govukButton({
         text: "Start",
         href: "/name-your-duck"
-        }) }}
+    }) }}
 {% endblock %}
