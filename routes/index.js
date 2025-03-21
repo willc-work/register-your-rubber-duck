@@ -23,8 +23,18 @@ router.get('/name-your-duck', (req, res) => {
 });
 
 router.post('/submit-duck-name', (req, res) => {
-  const duckName = req.body.duckName;
-  res.send(`Your duck is named: ${duckName}`);
+  const duckName = req.body.duckName?.trim();
+
+  if (!duckName) {
+      return res.render('main/name-your-duck.njk', {
+          csrfToken: req.csrfToken(),
+          errorMessage: "Enter your duck’s name",
+          previousValue: ''
+      });
+  }
+
+  res.redirect('/confirm-duck');
 });
+
 
 export default router;
