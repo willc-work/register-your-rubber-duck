@@ -3,16 +3,39 @@
 {% block content %}
     <h1 class="govuk-heading-xl">Name Your Duck</h1>
 
-    <form action="/submit-duck-name" method="POST">
-        <div class="govuk-form-group">
+    {% if errorMessage %}
+        <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+            <h2 class="govuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+                <ul class="govuk-list govuk-error-summary__list">
+                    <li><a href="#duck-name">{{ errorMessage }}</a></li>
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+
+    <form action="/submit-duck-name" method="POST" novalidate>
+        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+
+        <div class="govuk-form-group {% if errorMessage %}govuk-form-group--error{% endif %}">
             <label class="govuk-label" for="duck-name">
                 Enter your duck's name
             </label>
-            <input class="govuk-input" id="duck-name" name="duckName" type="text" required>
+
+            {% if errorMessage %}
+                <span id="duck-name-error" class="govuk-error-message">
+                    <span class="govuk-visually-hidden">Error:</span> {{ errorMessage }}
+                </span>
+            {% endif %}
+
+            <input class="govuk-input govuk-!-width-one-half" id="duck-name" name="duckName" type="text" value="{{ previousValue | default('') }}" aria-describedby="{% if errorMessage %}duck-name-error{% endif %}" required>
         </div>
 
         {{ govukButton({
             text: "Continue"
         }) }}
     </form>
+
 {% endblock %}
