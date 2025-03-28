@@ -48,6 +48,7 @@
     "@jest/globals": "^29.7.0",
     "chokidar": "3.6.0",
     "connect-livereload": "^0.6.1",
+    "cypress": "^14.2.1",
     "esbuild": "^0.25.0",
     "esbuild-plugin-copy": "^2.1.1",
     "esbuild-sass-plugin": "^3.3.1",
