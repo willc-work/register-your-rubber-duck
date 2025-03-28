@@ -1,0 +1,35 @@
+{% extends "base.njk" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">Confirm your duck</h1>
+
+  <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Name</dt>
+      <dd class="govuk-summary-list__value">{{ duckName }}</dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Unique ID</dt>
+      <dd class="govuk-summary-list__value">{{ duckId }}</dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Description</dt>
+      <dd class="govuk-summary-list__value">
+        {{ duckDescription or "No description provided" }}
+      </dd>
+    </div>
+  </dl>
+
+  <form action="/register-duck" method="POST">
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+    <input type="hidden" name="duckName" value="{{ duckName }}">
+    <input type="hidden" name="duckId" value="{{ duckId }}">
+    <input type="hidden" name="duckDescription" value="{{ duckDescription }}">
+
+    {{ govukButton({
+      text: "Confirm registration"
+    }) }}
+  </form>
+{% endblock %}
